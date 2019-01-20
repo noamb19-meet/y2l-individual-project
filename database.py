@@ -12,11 +12,11 @@ def add_user(username,password,family):
     user= User(username=username,password=password,family=family)
     session.add(user)
     session.commit()
+
 def get_all_users():
     users=session.query(User).all()
     return users
 
-# Example of addting a student:
 def login(their_name,their_password):
     user = session.query(User).filter_by(username=their_name).first()
     if user!=None and str(user.password)==their_password:
@@ -25,3 +25,13 @@ def login(their_name,their_password):
     else:
         print("False")
         return False
+
+def add_event(name,date,family):
+    event= Event(name=name, date=date,family=family)
+    session.add(event)
+    session.commit()
+
+def get_events_by_family(their_family):
+    events=session.query(Event).filter_by(family=their_family).first()
+    return events
+
