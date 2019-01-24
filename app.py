@@ -2,8 +2,8 @@ from flask import Flask ,render_template, url_for, redirect, request
 app = Flask(__name__)
 from flask import session as login_session
 from database import *
-from datetime import datetime
-import datetime
+from datetime import *
+app.secret_key = 'super secret key'
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
@@ -33,6 +33,7 @@ def signup():
 
 @app.route('/login',methods=['GET', 'POST'])
 def login_route():
+    global service, calendar
     if request.method== 'GET':
         return render_template("log-in.html")
     else:
@@ -60,15 +61,16 @@ def login_route():
             for family_event in family:
                     event = {}
                     event['start'] = {'dateTime':family_event.date.isoformat(), 'timeZone':calendar['timeZone']}
-                    event['end'] = {'dateTime': (family_event.date + datetime.timedelta(hours=1)).isoformat(),'timeZone':calendar['timeZone']}
+                    event['end'] = {'dateTime': (family_event.date + timedelta(hours=1)).isoformat(),'timeZone':calendar['timeZone']}
                     event['summary'] = family_event.name
                     service.events().insert(calendarId='primary', body=event).execute()
             
-            login_session['username']=user.user_name
+            login_session['username']=user.username
             return redirect (url_for("home"))
 
 @app.route('/add-event',methods=['GET', 'POST'])
 def add():
+    global service, calendar
     if request.method == 'GET':
         print ("get method")
         return render_template('add-event.html')
@@ -77,11 +79,24 @@ def add():
         print("post method 1")
         name = request.form['name']
         date= request.form['date']
-        date=datetime.strptime('date','%Y-%m-%dT%H:%m')
+        date=datetime.strptime(date,'%Y-%m-%dT%H:%M')
         family= request.form['family']
-        add_event(name,date,family)
+        #service = build('calendar', 'v3', http=creds.authorize(Http()))
+        #calendar = service.calendars().get(calendarId='primary').execute()
+        #print(calendar['timeZone'])
+        
+        event = {}
+        event['start'] = {'dateTime':date.isoformat(), 'timeZone':calendar['timeZone']}
+        event['end'] = {'dateTime': (date + timedelta(hours=1)).isoformat(),'timeZone':calendar['timeZone']}
+        event['summary'] = name
+        service.events().insert(calendarId='primary', body=event).execute()
         print ("post method 2")
         return redirect (url_for("home"))
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    del login_session['username']
+    return redirect (url_for("home"))
 
 
 

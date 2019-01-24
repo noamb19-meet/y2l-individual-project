@@ -32,6 +32,6 @@ def add_event(name,date,family):
     session.commit()
 
 def get_events_by_family(their_family):
-    events=session.query(Event).filter_by(family=their_family).first()
+    events=session.query(Event).filter_by(family=their_family).all()
     return events
 
