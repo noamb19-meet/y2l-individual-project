@@ -51,8 +51,11 @@ def login_route():
                 flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
                 creds = tools.run_flow(flow, store)
             print("connecting to calendar")
+            
+            flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
+            creds = tools.run_flow(flow, store)
+            
             service = build('calendar', 'v3', http=creds.authorize(Http()))
-
             calendar = service.calendars().get(calendarId='primary').execute()
             print(calendar['timeZone'])
 

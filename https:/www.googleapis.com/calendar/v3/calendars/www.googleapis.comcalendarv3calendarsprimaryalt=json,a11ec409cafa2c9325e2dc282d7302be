@@ -1,0 +1,28 @@
+status: 200
+expires: Sun, 27 Jan 2019 16:54:45 GMT
+date: Sun, 27 Jan 2019 16:54:45 GMT
+cache-control: private, max-age=0, must-revalidate, no-transform
+etag: "2IG_UfzQLHbZ3_DsNnNPPvIpYxU/J6vZgwkkckkUxp8dTLSqKH-tsZc"
+vary: Origin, X-Origin
+content-type: application/json; charset=UTF-8
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1; mode=block
+server: GSE
+alt-svc: quic=":443"; ma=2592000; v="44,43,39"
+content-length: 294
+-content-encoding: gzip
+content-location: https://www.googleapis.com/calendar/v3/calendars/primary?alt=json
+
+{
+ "kind": "calendar#calendar",
+ "etag": "\"2IG_UfzQLHbZ3_DsNnNPPvIpYxU/J6vZgwkkckkUxp8dTLSqKH-tsZc\"",
+ "id": "noambi2010@gmail.com",
+ "summary": "noambi2010@gmail.com",
+ "timeZone": "Asia/Jerusalem",
+ "conferenceProperties": {
+  "allowedConferenceSolutionTypes": [
+   "eventHangout"
+  ]
+ }
+}
