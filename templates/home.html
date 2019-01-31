@@ -39,16 +39,16 @@
             <body>
                  
                 <ul>
-              <li><a href="http://127.0.0.1:5000/">Home</a></li>
+              <li><a href="{{ url_for('home') }}">Home</a></li>
               <br>
               <br>
-              <li><a href="http://127.0.0.1:5000/login">log in</a></li>
+              <li><a href="{{ url_for('login_route')}}">log in</a></li>
               <br>
               <br>
-              <li><a href="http://127.0.0.1:5000/add-event">add event</a></li>
+              <li><a href="{{url_for('add')}}">add event</a></li>
               <br>
               <br>
-              <li><a href="http://127.0.0.1:5000/signup">sign up</a></li>
+              <li><a href="{{ url_for('signup')}}">sign up</a></li>
               <br>
               <br>
             </ul>
