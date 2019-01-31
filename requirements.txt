@@ -13,3 +13,6 @@ MarkupSafe==1.0
 Werkzeug==0.14.1
 wheel==0.24.0
 SQLAlchemy==1.2.14
+google-api-python-client==1.7.7
+google-auth==1.6.2
+google-auth-httplib2==0.0.3
