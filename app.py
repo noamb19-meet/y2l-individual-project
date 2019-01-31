@@ -57,7 +57,7 @@ def login_route():
             creds = tools.run_flow(flow, store)
             print("got creds")
             
-            service = build('calendar', 'v3', http=creds.authorize(Http()))
+            #service = build('calendar', 'v3', http=creds.authorize(Http()))
             pritn("got service")
             calendar = service.calendars().get(calendarId='primary').execute()
             print(calendar['timeZone'])
