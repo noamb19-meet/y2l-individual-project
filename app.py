@@ -58,7 +58,7 @@ def login_route():
             print("got creds")
             
             service = build('calendar', 'v3', http=creds.authorize(Http()))
-            pritn("got service")
+            print("got service")
             calendar = service.calendars().get(calendarId='primary').execute()
             print(calendar['timeZone'])
 
